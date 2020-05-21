@@ -31,7 +31,7 @@
                             <label for="current" class="col-md-4 col-form-label text-md-right">現在のパスワード</label>
 
                             <div class="col-md-6">
-                                <input id="current" type="password" class="form-control @error('current') is-invalid @enderror" name="current-password" required autofocus>
+                                <input id="current" type="password" class="form-control @error('current-password') is-invalid @enderror" name="current-password">
 
                                 @error('current-password')
                                     <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('new-password') is-invalid @enderror" name="new-password" required>
+                                <input id="password" type="password" class="form-control @error('new-password') is-invalid @enderror" name="new-password">
 
                                 @error('new-password')
                                     <span class="invalid-feedback" role="alert">
@@ -59,7 +59,13 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="new-password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control @error('new-password_confirmation') is-invalid @enderror" name="new-password_confirmation">
+
+                                @error('new-password_confirmation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 

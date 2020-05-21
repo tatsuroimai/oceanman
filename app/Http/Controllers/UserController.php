@@ -11,6 +11,7 @@ use Validator;
 use Illuminate\Support\Facades\Storage;
 use Hash;
 use App\Post;
+use App\Http\Requests\ChangePasswordRequest;
 
 class UserController extends Controller
 {
@@ -94,7 +95,7 @@ class UserController extends Controller
         return view('auth.changepassword');
     }
 
-    public function changePassword(Request $request){
+    public function changePassword(ChangePasswordRequest $request){
         if(!(Hash::check($request->get('current-password'), Auth::user()->password))){
             return redirect()->back()->with('change_password_error', '現在のパスワードが間違っています。');
         }
@@ -103,16 +104,16 @@ class UserController extends Controller
             return redirect()->back()->with('change_password_error', '新しいパスワードが現在のパスワードと同じです。違うパスワードを設定してください。');
         }
 
-        $validator = Validator::make($request->all(), [
-            'current-password' => 'required',
-            'new-password' => 'required|string|min:6|confirmed',
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'current-password' => 'required',
+        //     'new-password' => 'required|string|min:6|confirmed',
+        // ]);
 
-        if($validator->fails()){
-            return redirect('/user/changepassword')
-                ->withErrors($validator)
-                ->withInput();
-        }
+        // if($validator->fails()){
+        //     return redirect('/user/changepassword')
+        //         ->withErrors($validator)
+        //         ->withInput();
+        // }
 
         $user = Auth::user();
         $user->password = bcrypt($request->get('new-password'));

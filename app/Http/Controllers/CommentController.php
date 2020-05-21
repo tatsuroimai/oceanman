@@ -22,6 +22,6 @@ class CommentController extends Controller
         $comment = new Comment;
         $comment->fill($param)->save();
         return redirect()->back();
-        // return view('post.show');
+        
     }
 }
