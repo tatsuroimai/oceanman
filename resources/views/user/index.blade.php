@@ -15,7 +15,7 @@
 
       <a href="{{ route('post.add' )}}" class="btn btn-primary btn-sm">投稿する</a>
       
-      <a href="{{ route('user.userEdit') }}" class="btn btn-primary btn-sm">プロフィール編集</a>
+      <a href="{{ route('user.edit') }}" class="btn btn-primary btn-sm">プロフィール編集</a>
 
     </div>
 

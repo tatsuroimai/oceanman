@@ -8,6 +8,8 @@ use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\PostAddRequest;
+use App\Http\Requests\PostUpdateRequest;
 
 class PostController extends Controller
 {
@@ -22,27 +24,7 @@ class PostController extends Controller
         return view('post.add');
     }
 
-    public function create(Request $request){
-        $rules = [
-            'image' => 'image|required',
-            'title' => 'required',
-            'message' => 'nullable', 
-            'topic' => 'required',         
-        ];
-        $messages = [
-            'image.integer' => '画像ファイルを選択してください',
-            'image.required' => '画像が選択されていません',
-            'title.required' => 'タイトルが未入力です',
-            'topic.required' => 'トピックが未入力です',
-                      
-        ];
-        $validator = Validator::make($request->all(),$rules,$messages);
-
-        if($validator->fails()){
-            return redirect('/post/create')
-                ->withErrors($validator)
-                ->withInput();
-        }
+    public function create(PostAddRequest $request){
 
         $postimagename = $request->file('image')->hashName();
         $request->file('image')->storeAs('public/post', $postimagename);
@@ -77,26 +59,7 @@ class PostController extends Controller
         return view('post.edit', compact('editpost'));
     }
 
-    public function update(Request $request){
-        $rules = [
-            'title' => 'required',
-            'message' => 'nullable', 
-            'topic' => 'required',         
-        ];
-        $messages = [
-            'title.required' => 'タイトルが未入力です',
-            'topic.required' => 'トピックが未入力です',
-                      
-        ];
-        $validator = Validator::make($request->all(),$rules,$messages);
-
-        if($validator->fails()){
-            return redirect('/post/update')
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        
+    public function update(PostUpdateRequest $request){
 
         // $editimagename = $request->file('image')->hashName();
         // $request->file('image')->storeAs('public/post', $editimagename);

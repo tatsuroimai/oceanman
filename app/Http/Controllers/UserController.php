@@ -27,15 +27,15 @@ class UserController extends Controller
     }
 
     
-    public function userEdit(Request $request){
+    public function edit(Request $request){
         $authUser = Auth::user();
         $param = [
             'authUser'=>$authUser,
         ];
-        return view('user.userEdit',$param);
+        return view('user.edit',$param);
     }
 
-    public function userUpdate(Request $request){
+    public function update(Request $request){
         // Validator check
         $rules = [
             'id' => 'integer|required',

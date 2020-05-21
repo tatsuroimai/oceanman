@@ -15,7 +15,7 @@
         @endif
     </div>
 
-    <form method="post" action="{{ route('user.userUpdate') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('user.update') }}" enctype="multipart/form-data">
         @csrf
 
         <input type="hidden" name="id" value="{{ $authUser->id }}">

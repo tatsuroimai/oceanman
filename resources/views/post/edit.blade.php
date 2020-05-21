@@ -35,7 +35,7 @@
                             <label for="title" class="col-md-4 col-form-label text-md-right">タイトル</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $editpost->title }}" required>
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $editpost->title }}">
 
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">

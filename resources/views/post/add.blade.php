@@ -23,7 +23,7 @@
                             <label for="image" class="col-md-4 col-form-label text-md-right">画像</label>
 
                             <div class="col-md-6">
-                                <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" required>
+                                <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image">
 
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                             <label for="title" class="col-md-4 col-form-label text-md-right">タイトル</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" required>
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}">
 
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -51,7 +51,7 @@
                             <label for="message" class="col-md-4 col-form-label text-md-right">メッセージ</label>
 
                             <div class="col-md-6">
-                                <textarea id="message" type="text" class="form-control" name="message"></textarea>
+                                <textarea id="message" type="text" class="form-control" name="message">{{ old('message') }}</textarea>
                                 @error('message')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -64,7 +64,7 @@
                             <label for="topic" class="col-md-4 col-form-label text-md-right">トピック</label>
 
                             <div class="col-md-6">
-                                <input id="topic" type="text" class="form-control @error('topic') is-invalid @enderror" name="topic" required>
+                                <input id="topic" type="text" class="form-control @error('topic') is-invalid @enderror" name="topic" value="{{ old('topic') }}">
 
                                 @error('topic')
                                     <span class="invalid-feedback" role="alert">

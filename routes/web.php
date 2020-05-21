@@ -26,8 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/user', 'UserController@index')->name('user.index');
 
-    Route::get('/user/userEdit', 'UserController@userEdit')->name('user.userEdit');
-    Route::post('/user/userEdit', 'UserController@userUpdate')->name('user.userUpdate');
+    Route::get('/user/edit', 'UserController@edit')->name('user.edit');
+    Route::post('/user/edit', 'UserController@update')->name('user.update');
 
     Route::get('/user/changepassword', 'UserController@showChangePasswordForm');
     Route::post('/user/changepassword', 'UserController@changePassword')->name('user.changepassword');
