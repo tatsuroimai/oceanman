@@ -89,7 +89,12 @@
             @yield('content')
         </main>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
-    <script src="{{ asset('/js/macy.js') }}"></script>
+    
+    @if(!preg_match('/edit|changepassword|delete|post|add|show/', $_SERVER['REQUEST_URI']))
+        
+        <script src="{{ asset('/js/macy.js') }}"></script>
+    @endif
 </body>
 </html>

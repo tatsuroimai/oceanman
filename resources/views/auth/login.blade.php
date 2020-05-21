@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Oceanman') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" ></script>
+    <!-- <script src="{{ asset('js/app.js') }}" ></script> -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -55,6 +55,7 @@
     </style>
 </head>
 <body>
+    <div id="app">
 	<div class="home-wrap">
 		<div class="home-inner"></div>
 	</div>
@@ -115,7 +116,7 @@
 
                                 <div class="form-group row mb-3">
                                     <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-light loginbtn">
+                                        <button type="submit" class="btn loginbtn">
                                             {{ __('Login') }}
                                         </button>
 
@@ -137,4 +138,5 @@
             </div>
         </div>
   </main>
+  </div>
 </body>

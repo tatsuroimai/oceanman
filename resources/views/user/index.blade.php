@@ -22,19 +22,12 @@
     
   </div>
 
-  <div class="card" style="width: 20rem;">
-    @foreach($items as $item)
-      <img class="card-img-top" src="{{ asset('storage/post/' . $item->image) }}" alt="">
-      <div class="card-body">
-        <h4 class="card-title">{{ $item->title }}</h4>
-        <p class="card-text">{{ $item->message }}</p>
-        <a href="#" class="btn btn-primary stretched-link">詳細を見る</a>
-      </div>
+  <div class="gallery">    
+    @foreach($items as $item)     
+        <!-- <div class="card mb-4"> -->
+          <a href="{{ route('post.show', ['post_id'=>$item->id]) }}" class="stretched-link"><img class="card-img-top" src="{{ asset('storage/post/' . $item->image) }}" alt=""></a>
+        <!-- </div>    -->
     @endforeach
-  </div>
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-    <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
   </div>
   
 </div>  

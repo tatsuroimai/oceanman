@@ -12,6 +12,7 @@ const macy = Macy({
   }
 });
 
-function func1() {
-document.location.reload();
-}
+// function func1() {
+// document.location.reload();
+// }
+location.reload(true);

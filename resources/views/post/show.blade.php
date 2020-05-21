@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-  <div class="card" style="width: 20rem;">
+  <!-- <div class="card" style="width: 20rem;">
     
       <img class="card-img-top" src="{{ asset('storage/post/' . $showpost->image) }}" alt="">
       <div class="card-body">
@@ -13,6 +13,23 @@
         <a href="{{ route('post.edit', ['post_id'=>$showpost->id]) }}" class="btn btn-primary stretched-link">編集</a>
         @endif
       </div>
+  </div> -->
+
+  <div class="card mb-3" style="max-width: 1000px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img class="card-img-top" src="{{ asset('storage/post/' . $showpost->image) }}" alt="">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h4 class="card-title">{{ $showpost->title }}</h4>
+          <p class="card-text">{{ $showpost->message }}</p>
+          @if($showpost->user_id == Auth::id())
+          <a href="{{ route('post.edit', ['post_id'=>$showpost->id]) }}" class="btn btn-primary stretched-link">編集</a>
+          @endif
+        </div>    
+      </div>
+    </div>
   </div>
 
   <div class="card" style="width: 20rem;">
