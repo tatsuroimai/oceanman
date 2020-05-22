@@ -38,10 +38,8 @@
           <ul class="list-group list-group-flush">
           @if($showcomments)
             @foreach($showcomments as $comment)
-
-                  <li class="list-group-item">{{ $comment->comment }}</li>
-                  <img src="{{ asset('storage/user/' . $comment->user->thumbnail) }}" style="width:30px; height:30px" alt="">
-              
+              <img src="{{ asset('storage/user/' . $comment->user->thumbnail) }}" style="width:30px; height:30px" alt="">
+              <li class="list-group-item">{{ $comment->comment }}</li>      
             @endforeach
           @endif
           </ul>
@@ -63,27 +61,6 @@
       <!-- </div> -->
     </div>
   </form>
-
-  @foreach($showcommentsids as $ids)
-  
-    <p>{{ $ids->user_id }}</p>
-
-  @endforeach
-
-  <!-- @if($showcomments2) -->
-      @foreach($showcomments2 as $comment)
-
-        <img src="{{ asset('storage/user/' . $comment->usersthumbnail()) }}" style="width:30px; height:30px" alt="">
-              
-      @endforeach
-  <!-- @endif -->
-
-
-
-
-
-
-  
   
 </div>  
 @endsection
