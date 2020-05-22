@@ -149,4 +149,21 @@ class UserController extends Controller
         User::find($id)->delete();
         return redirect('/');
     }
+
+    public function show(Request $request){
+        $authUser = Auth::user();
+
+        $userid = $request->user_id;
+        $showuser = User::find($userid);
+
+
+        $items = Post::where('user_id', $userid)->orderBy('id', 'desc')->get();
+        $param = [
+            'authUser'=>$authUser,
+            'showuser'=>$showuser,
+            'items'=>$items,
+        ];
+
+        return view('user.show', $param);
+    }
 }

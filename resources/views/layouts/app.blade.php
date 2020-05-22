@@ -97,7 +97,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
     
-    @if(!preg_match('/edit|changepassword|delete|post|add|show/', $_SERVER['REQUEST_URI']))
+    @if(!preg_match('/edit|changepassword|delete|post|add|show/', $_SERVER['REQUEST_URI']) || preg_match('/user|show/', $_SERVER['REQUEST_URI']))
         
         <script src="{{ asset('/js/macy.js') }}"></script>
     @endif

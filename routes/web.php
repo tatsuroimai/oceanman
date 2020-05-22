@@ -35,6 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/user/delete', 'UserController@delete')->name('user.delete');
     Route::post('/user/delete', 'UserController@remove')->name('user.remove');
 
+    Route::get('/user/show', 'UserController@show')->name('user.show');
+
+    
     Route::get('/', 'PostController@index')->name('post.index');
 
     Route::get('/post/add', 'PostController@add')->name('post.add');

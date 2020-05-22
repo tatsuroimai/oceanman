@@ -23,8 +23,10 @@
       <div class="col-md-8">
         <div class="card-body">
           <div class="row mb-5">
-            <img src="{{ asset('storage/user/' . $postuser->thumbnail) }}" style="width:50px; height:50px; position:absolute; top:5px; left:10px; border-radius:50%" alt="">
-            <div style="position:relative; left:100px">{{ $postuser->name }}</div>
+            <a href="{{ route('user.show', ['user_id'=>$showpost->user_id]) }}">
+              <img src="{{ asset('storage/user/' . $postuser->thumbnail) }}" style="width:50px; height:50px; position:absolute; top:5px; left:10px; border-radius:50%" alt=""> 
+            </a>
+            <div style="position:relative; left:100px">{{ $postuser->name }}</div>        
           </div>
           <h4 class="card-title">{{ $showpost->title }}</h4>
           <p class="card-text">{{ $showpost->message }}</p>
