@@ -14,14 +14,16 @@ use App\Http\Requests\PostUpdateRequest;
 class PostController extends Controller
 {
     public function index(Request $request){
+        $authUser = Auth::user();
         $items = Post::orderBy('id', 'desc')->get();
 
-        return view('post.index', ['items'=>$items]);
+        return view('post.index', compact('authUser','items'));
     }
 
 
     public function add(Request $request){
-        return view('post.add');
+        $authUser = Auth::user();
+        return view('post.add', compact('authUser'));
     }
 
     public function create(PostAddRequest $request){
@@ -46,17 +48,19 @@ class PostController extends Controller
     }
 
     public function show(Request $request){
+        $authUser = Auth::user();
         $showpost = Post::find($request->post_id);
 
         $showcomments = Comment::where('post_id', $request->post_id)->get();
 
-        return view('post.show', compact('showpost','showcomments'));
+        return view('post.show', compact('authUser','showpost','showcomments'));
     }
 
     public function edit(Request $request){
+        $authUser = Auth::user();
         $editpost = Post::find($request->post_id);
 
-        return view('post.edit', compact('editpost'));
+        return view('post.edit', compact('authUser','editpost'));
     }
 
     public function update(PostUpdateRequest $request){
@@ -81,8 +85,10 @@ class PostController extends Controller
     }
 
     public function delete(Request $request){
+        $authUser = Auth::user();
+
         $deletepost = Post::find($request->post_id);
-        return view('post.delete', compact('deletepost'));
+        return view('post.delete', compact('authUser','deletepost'));
     }
 
     public function remove(Request $request){

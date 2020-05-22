@@ -128,8 +128,8 @@
                                     </div>
                                 </div>
                                 <div class="row col-md-8 offset-md-4">
-                                    <p class="mr-3">Don't have an account?</p>
-                                    <a href="{{ route('register') }}">Register here</a>
+                                    <p class="mr-3">アカウントをお持ちでないですか？</p>
+                                    <a href="{{ route('register') }}">登録する</a>
                                 </div>
                             </form>
                         </div>

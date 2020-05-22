@@ -7,7 +7,7 @@
     @if(!empty($authUser->thumbnail))
     <img src="{{ asset('storage/user/' . $authUser->thumbnail) }}" class="thumbnail offset-5">
     @else
-    画像なし
+    <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" class="thumbnail offset-5" alt="">
     @endif    
     </div>
     <div class="col-md-7">
@@ -23,10 +23,8 @@
   </div>
 
   <div class="gallery">    
-    @foreach($items as $item)     
-        <!-- <div class="card mb-4"> -->
+    @foreach($items as $item)        
           <a href="{{ route('post.show', ['post_id'=>$item->id]) }}" class="stretched-link"><img class="card-img-top" src="{{ asset('storage/post/' . $item->image) }}" alt=""></a>
-        <!-- </div>    -->
     @endforeach
   </div>
   

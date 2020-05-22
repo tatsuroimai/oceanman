@@ -62,18 +62,23 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="position:relative; padding-left:50px">
+                                    @if(!empty($authUser->thumbnail))
+                                        <img src="{{ asset('storage/user/' . $authUser->thumbnail) }}" style="width:30px; height:30px; position:absolute; top:5px; left:10px; border-radius:50%" alt="">
+                                    @else
+                                        <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" style="width:30px; height:30px; position:absolute; top:5px; left:10px; border-radius:50%" alt="">
+                                    @endif 
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item"　href="{{ route('user.index') }}">マイプロフィール</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <a class="dropdown-item"　href="{{ route('user.index') }}">マイプロフィール</a>
-
+                                    
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

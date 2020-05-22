@@ -56,7 +56,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(),$rules,$messages);
 
         if($validator->fails()){
-            return redirect('/user/userEdit')
+            return redirect('/user/edit')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -86,13 +86,14 @@ class UserController extends Controller
         }
 
         User::find($request->id)->update($param);
-        return redirect(route('user.userEdit'))->with('success', '保存しました。');
+        return redirect(route('user.edit'))->with('success', '保存しました。');
     }
 
     
 
     public function showChangePasswordForm(){
-        return view('auth.changepassword');
+        $authUser = Auth::user();
+        return view('auth.changepassword', compact('authUser'));
     }
 
     public function changePassword(ChangePasswordRequest $request){
@@ -125,7 +126,8 @@ class UserController extends Controller
 
     
     public function delete(Request $request){
-        return view('user.delete');
+        $authUser = Auth::user();
+        return view('user.delete', compact('authUser'));
     }
 
     public function remove(Request $request){
