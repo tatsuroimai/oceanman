@@ -83,6 +83,15 @@
                             <a href="{{ route('user.index') }}" class="btn btn-secondary">戻る</a>
                         </div>
                     </form>
+
+                    <!-- <div class="form-group">
+                        <label for="inputFile">File input</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputFile">
+                            <label class="custom-file-label" for="inputFile" data-browse="参照">Choose file</label>
+                        </div>
+                    </div> -->
+  
                 </div>
             </div>
         </div>

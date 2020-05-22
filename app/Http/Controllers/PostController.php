@@ -56,8 +56,13 @@ class PostController extends Controller
         $postuser = User::find($showpost->user_id);
 
         $showcomments = Comment::where('post_id', $request->post_id)->get();
+        $showcomments2 = Comment::where('post_id', $request->post_id);
 
-        return view('post.show', compact('authUser','showpost','postuser','showcomments'));
+        $showcommentsids = Comment::select('user_id')->where('post_id', $request->post_id)->get();
+
+        $users = User::all();
+
+        return view('post.show', compact('authUser','showpost','postuser','showcomments','showcomments2','showcommentsids','users'));
     }
 
     public function edit(Request $request){
