@@ -10,6 +10,7 @@ use Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PostAddRequest;
 use App\Http\Requests\PostUpdateRequest;
+use App\User;
 
 class PostController extends Controller
 {
@@ -49,11 +50,14 @@ class PostController extends Controller
 
     public function show(Request $request){
         $authUser = Auth::user();
+        
         $showpost = Post::find($request->post_id);
+
+        $postuser = User::find($showpost->user_id);
 
         $showcomments = Comment::where('post_id', $request->post_id)->get();
 
-        return view('post.show', compact('authUser','showpost','showcomments'));
+        return view('post.show', compact('authUser','showpost','postuser','showcomments'));
     }
 
     public function edit(Request $request){

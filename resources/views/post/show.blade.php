@@ -22,13 +22,17 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
+          <div class="row mb-5">
+            <img src="{{ asset('storage/user/' . $postuser->thumbnail) }}" style="width:50px; height:50px; position:absolute; top:5px; left:10px; border-radius:50%" alt="">
+            <div style="position:relative; left:100px">{{ $postuser->name }}</div>
+          </div>
           <h4 class="card-title">{{ $showpost->title }}</h4>
           <p class="card-text">{{ $showpost->message }}</p>
           @if($showpost->user_id == Auth::id())
           <a href="{{ route('post.edit', ['post_id'=>$showpost->id]) }}" class="btn btn-primary">編集</a>
           @endif
         </div>  
-        <div class="card" style="width: 20rem;">
+        <div style="width: 20rem;">
           <ul class="list-group list-group-flush">
             @foreach($showcomments as $comment)
               <li class="list-group-item">{{ $comment->comment }}</li>
