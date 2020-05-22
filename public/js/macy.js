@@ -12,7 +12,10 @@ const macy = Macy({
   }
 });
 
-// function func1() {
-// document.location.reload();
-// }
-location.reload(true);
+
+window.onload = function() {
+  if(!location.hash) {
+      history.replaceState(null, '', '#hoge');
+      location.reload();
+  }
+}
