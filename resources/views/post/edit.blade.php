@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container my-5">
     <div class="card" style="max-width: 1000px;">
         <div class="row no-gutters">
             <div class="col-md-5">
