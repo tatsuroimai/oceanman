@@ -127,7 +127,7 @@
                                     </div>
                                 </div>
                                 <div class="row col-md-8 offset-md-4">
-                                    <p class="mr-3">アカウントをお持ちでないですか？</p>
+                                    <p class="mr-3">アカウントがありませんか？</p>
                                     <a href="{{ route('register') }}">登録する</a>
                                 </div>
                             </form>
