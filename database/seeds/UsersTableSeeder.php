@@ -15,19 +15,19 @@ class UsersTableSeeder extends Seeder
     {
         $param = [
             'name' => 'Ringo Starr',
-            'email' => 'ringostarr@email.com',
+            'email' => 'user1@email.com',
             'password' => bcrypt('test1234'),
-            'thumbnail' => 'ringostarr.jpg',
+            'thumbnail' => 'user1.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
         DB::table('users')->insert($param);
    
         $param = [
-            'name' => 'Norah Jones',
-            'email' => 'norahjones@email.com',
+            'name' => 'Mariah Carey',
+            'email' => 'user2@email.com',
             'password' => bcrypt('test1234'),
-            'thumbnail' => 'norahjones.jpg',
+            'thumbnail' => 'user2.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
@@ -35,29 +35,29 @@ class UsersTableSeeder extends Seeder
         
         $param = [
             'name' => 'Michael Stipe',
-            'email' => 'michaelstipe@email.com',
+            'email' => 'user3@email.com',
             'password' => bcrypt('test1234'),
-            'thumbnail' => 'michaelstipe.jpg',
+            'thumbnail' => 'user3.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
         DB::table('users')->insert($param);
         
         $param = [
-            'name' => 'Chun Li',
-            'email' => 'chunli@email.com',
+            'name' => 'Cyndi Lauper',
+            'email' => 'user4@email.com',
             'password' => bcrypt('test1234'),
-            'thumbnail' => 'chunli.jpg',
+            'thumbnail' => 'user4.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
         DB::table('users')->insert($param);
         
         $param = [
-            'name' => 'Travie Mccoy',
-            'email' => 'traviemccoy@email.com',
+            'name' => 'Lionel Richie',
+            'email' => 'user5@email.com',
             'password' => bcrypt('test1234'),
-            'thumbnail' => 'traviemccoy.jpg',
+            'thumbnail' => 'user5.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

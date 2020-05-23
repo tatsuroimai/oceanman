@@ -15,7 +15,7 @@ const macy = Macy({
 
 window.onload = function() {
   if(!location.hash) {
-      history.replaceState(null, '', '#hoge');
+      history.replaceState(null, '', '#reloaded');
       location.reload();
   }
 }
