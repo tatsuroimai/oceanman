@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">パスワードの変更</div>
+                <div class="header mt-4 mb-1 text-center"><h4>パスワードの変更</h4></div>
 
                 @if (session('change_password_error'))
                   <div class=" mt-2 mx-2">

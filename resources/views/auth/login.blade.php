@@ -67,7 +67,6 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card shadow-lg">
-                        <!-- <div class="card-header">{{ __('Login') }}</div> -->
                         <div class="header mt-4 mb-1 text-center"><h4>{{ __('Login') }}</h4></div>
 
                         <div class="card-body">

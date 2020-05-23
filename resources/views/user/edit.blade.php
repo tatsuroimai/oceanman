@@ -2,7 +2,7 @@
 @section('title','ユーザー情報変更')
 
 @section('content')
-<div class="container col-lg-6">
+<div class="container col-lg-6 mt-5">
     @if (session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -11,7 +11,7 @@
         @if(!empty($authUser->thumbnail))
             <img src="{{ asset('storage/user/' . $authUser->thumbnail) }}" class="editThumbnail">
         @else
-        画像なし
+            <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" class="thumbnail offset-5" alt="">
         @endif
     </div>
 

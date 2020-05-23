@@ -1,55 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-
-  <!-- <div class="card" style="width: 20rem;">
-    
-      <img class="card-img-top" src="{{ asset('storage/post/' . $showpost->image) }}" alt="">
-      <div class="card-body">
-        <h4 class="card-title">{{ $showpost->title }}</h4>
-        <p class="card-text">{{ $showpost->message }}</p>
-        @if($showpost->user_id == Auth::id())
-        <a href="{{ route('post.edit', ['post_id'=>$showpost->id]) }}" class="btn btn-primary stretched-link">編集</a>
-        @endif
-      </div>
-  </div> -->
-
+<div class="container my-5">
   <div class="card mb-3" style="max-width: 1000px;">
     <div class="row no-gutters">
-      <div class="col-md-4">
+      <div class="col-md-5">
         <img class="card-img-top" src="{{ asset('storage/post/' . $showpost->image) }}" alt="">
       </div>
-      <div class="col-md-8">
+      <div class="col-md-7">
         <div class="card-body">
           <div class="row mb-5">
             <a href="{{ route('user.show', ['user_id'=>$showpost->user_id]) }}">
-              <img src="{{ asset('storage/user/' . $postuser->thumbnail) }}" style="width:50px; height:50px; position:absolute; top:5px; left:10px; border-radius:50%" alt=""> 
+              <img class="showpostuser" src="{{ asset('storage/user/' . $postuser->thumbnail) }}" style="width:50px; height:50px; position:absolute; top:20px; left:20px; border-radius:50%" alt=""> 
             </a>
-            <div style="position:relative; left:100px">{{ $postuser->name }}</div>        
+            <div style="position:relative; top:15px; left:90px">{{ $postuser->name }}</div>        
           </div>
           <h4 class="card-title">{{ $showpost->title }}</h4>
           <p class="card-text">{{ $showpost->message }}</p>
           @if($showpost->user_id == Auth::id())
-          <a href="{{ route('post.edit', ['post_id'=>$showpost->id]) }}" class="btn btn-primary">編集</a>
+          <a href="{{ route('post.edit', ['post_id'=>$showpost->id]) }}" class="btn btn-outline-secondary">編集</a>
           @endif
         </div>  
-        <div style="width: 20rem;">
-          <ul class="list-group list-group-flush">
+        <div>
+          <div class="comment-group my-3 ml-3">
           @if($showcomments)
             @foreach($showcomments as $comment)
-              <img src="{{ asset('storage/user/' . $comment->user->thumbnail) }}" style="width:30px; height:30px" alt="">
-              <li class="list-group-item">{{ $comment->comment }}</li>      
+              <div class="row comment-item my-3" style="border-radius:50">
+                <a href="{{ route('user.show', ['user_id'=>$comment->user_id]) }}">
+                  <img src="{{ asset('storage/user/' . $comment->user->thumbnail) }}" style="width:40px; height:40px; border-radius:50%; position:relative; left:40px" alt="">
+                </a>
+                <div style="position:relative; top:10px; left:60px">{{ $comment->comment }}</div>
+              </div>    
             @endforeach
           @endif
-          </ul>
+          </div>
         </div>  
       </div>
 
     </div>
   </div>
 
-  <form method="POST" action="{{ route('comment.add', ['post_id'=>$showpost->id]) }}">
+  <form method="POST" action="{{ route('comment.add', ['post_id'=>$showpost->id]) }}"　style="max-width: 1000px;">
     @csrf
     <div class="form-group">
       <label for="comment">コメント</label>

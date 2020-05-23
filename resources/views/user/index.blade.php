@@ -2,7 +2,7 @@
 @section('title','ユーザー情報')
 @section('content')
 <div class="container">
-  <div class="row">
+  <div class="row my-4">
     <div class="col-md-4 mb-5">
     @if(!empty($authUser->thumbnail))
     <img src="{{ asset('storage/user/' . $authUser->thumbnail) }}" class="thumbnail offset-5">
@@ -10,7 +10,7 @@
     <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" class="thumbnail offset-5" alt="">
     @endif    
     </div>
-    <div class="col-md-7">
+    <div class="col-md-8">
       <h2>{{ $authUser->name }}</h2>
 
       <a href="{{ route('post.add' )}}" class="btn btn-primary btn-sm">投稿する</a>

@@ -56,3 +56,12 @@ input[class="userForm"]:focus {
   font-weight: 100;
   color: #cc1237;
 }
+
+.showpostuser {
+  width:50px;
+  height:50px;
+  position:absolute;
+  top:5px;
+  left:10px;
+  border-radius:50%
+}
