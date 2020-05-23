@@ -29,16 +29,23 @@ class PostController extends Controller
 
     public function create(PostAddRequest $request){
 
-        $postimagename = $request->file('image')->hashName();
-        $request->file('image')->storeAs('public/post', $postimagename);
+        // $postimagename = $request->file('image')->hashName(); ←多分あってる
+        $postimagename = $request->file('image');
+        $path = Storage::disk('s3')->putFile('/',$postimagename,'public');
+
+
+        // $request->file('image')->storeAs('public/post', $postimagename);
 
         $id = Auth::id();
+
+        
+        // $post->image = Storage::disk('s3')->url($postimagename);
 
         $param = [
             'title'=>$request->title,
             'message'=>$request->message,
             'topic'=>$request->topic,
-            'image'=>$postimagename,
+            'image'=>Storage::disk('s3')->url($postimagename),
             'user_id'=>$id,
         ];
         
