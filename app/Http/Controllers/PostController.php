@@ -39,13 +39,13 @@ class PostController extends Controller
         $id = Auth::id();
 
         
-        // $post->image = Storage::disk('s3')->url($postimagename);
+        $post->image = Storage::disk('s3')->url($postimagename);
 
         $param = [
             'title'=>$request->title,
             'message'=>$request->message,
             'topic'=>$request->topic,
-            'image'=>Storage::disk('s3')->url($postimagename),
+            // 'image'=>Storage::disk('s3')->url($postimagename),
             'user_id'=>$id,
         ];
         
