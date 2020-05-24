@@ -5,7 +5,7 @@
   <div class="card mb-3" style="max-width: 1000px;">
     <div class="row no-gutters">
       <div class="col-md-5">
-        <img class="card-img-top" src="{{ asset('storage/post/' . $showpost->image) }}" alt="">
+        <img class="card-img-top" src="{{ $showpost->image) }}" alt="">
       </div>
       <div class="col-md-7">
         <div class="card-body">
