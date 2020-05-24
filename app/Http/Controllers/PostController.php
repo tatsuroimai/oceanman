@@ -31,7 +31,8 @@ class PostController extends Controller
 
         // $postimagename = $request->file('image')->hashName(); ←多分あってる
         $postimagename = $request->file('image');
-        $path = Storage::disk('s3')->putFile('/',$postimagename,'public');
+        // $path = Storage::disk('s3')->putFile('/',$postimagename,'public');
+        dd(Storage::disk('s3')->putFile('/',$postimagename,'public'));
 
 
         // $request->file('image')->storeAs('public/post', $postimagename);
