@@ -7,7 +7,6 @@ use App\Post;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-// use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PostAddRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\User;
@@ -46,12 +45,12 @@ class PostController extends Controller
             'title'=>$request->title,
             'message'=>$request->message,
             'topic'=>$request->topic,
-            // 'image'=>Storage::disk('s3')->url($postimagename),
+            'image'=>Storage::disk('s3')->url($postimagename),
             'user_id'=>$id,
         ];
         
         $post = new Post;
-        $post->image = Storage::disk('s3')->url($postimagename);
+        // $post->image = Storage::disk('s3')->url($postimagename);
         $post->fill($param)->save();
         return redirect()->back()->with('post_success', '投稿しました。');
 
