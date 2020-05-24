@@ -30,7 +30,7 @@ class PostController extends Controller
             'title'=>$request->title,
             'message'=>$request->message,
             'topic'=>$request->topic,
-            'image'=>Storage::disk('s3')->url($postimagename),
+            'image'=>Storage::disk('s3')->url($path),
             'user_id'=>$id,
         ];
         $post = new Post;
