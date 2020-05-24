@@ -7,10 +7,11 @@ use App\Post;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-use Illuminate\Support\Facades\Storage;
+// use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PostAddRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\User;
+use Storage;
 
 class PostController extends Controller
 {
@@ -39,7 +40,7 @@ class PostController extends Controller
         $id = Auth::id();
 
         
-        $post->image = Storage::disk('s3')->url($postimagename);
+        
 
         $param = [
             'title'=>$request->title,
@@ -50,6 +51,7 @@ class PostController extends Controller
         ];
         
         $post = new Post;
+        $post->image = Storage::disk('s3')->url($postimagename);
         $post->fill($param)->save();
         return redirect()->back()->with('post_success', '投稿しました。');
 
