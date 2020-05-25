@@ -4,8 +4,8 @@
 <div class="container">
   <div class="row my-4">
     <div class="col-md-4 mb-5">
-    @if(!empty($authUser->thumbnail))
-    <img src="{{ asset('storage/user/' . $authUser->thumbnail) }}" class="thumbnail offset-5">
+    @if($authUser->thumbnail)
+    <img src="{{ $authUser->thumbnail }}" class="thumbnail offset-5">
     @else
     <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" class="thumbnail offset-5" alt="">
     @endif    
