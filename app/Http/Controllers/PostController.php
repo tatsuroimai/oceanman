@@ -40,8 +40,9 @@ class PostController extends Controller
     public function show(Request $request){
         $authUser = Auth::user();
         $showpost = Post::find($request->post_id);
-        $postuser = User::find($showpost->user_id);
+        // $postuser = User::find($showpost->user_id);
         $showcomments = Comment::where('post_id', $request->post_id)->get();
+        // $showcomments = $showpost->comments(); 的なできるんじゃね？
         return view('post.show', compact('authUser','showpost','postuser','showcomments'));
     }
     public function edit(Request $request){
@@ -50,12 +51,12 @@ class PostController extends Controller
         return view('post.edit', compact('authUser','editpost'));
     }
     public function update(PostUpdateRequest $request){
-        $id = Auth::id();
+        $authUserId = Auth::id();
         $param = [
             'title'=>$request->title,
             'message'=>$request->message,
             'topic'=>$request->topic,
-            'user_id'=>$id,
+            'user_id'=>$authUserId,
         ];
         $post = Post::find($request->postid);
         $post->fill($param)->save();

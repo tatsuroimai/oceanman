@@ -11,9 +11,9 @@
         <div class="card-body">
           <div class="row mb-5">
             <a href="{{ route('user.show', ['user_id'=>$showpost->user_id]) }}">
-              <img class="showpostuser" src="{{ $postuser->thumbnail) }}" style="width:50px; height:50px; position:absolute; top:20px; left:20px; border-radius:50%" alt=""> 
+              <img class="showpostuser" src="{{ $showpost->user->thumbnail) }}" style="width:50px; height:50px; position:absolute; top:20px; left:20px; border-radius:50%" alt=""> 
             </a>
-            <div style="position:relative; top:15px; left:90px">{{ $postuser->name }}</div>        
+            <div style="position:relative; top:15px; left:90px">{{ $showpost->user->name }}</div>        
           </div>
           <h4 class="card-title">{{ $showpost->title }}</h4>
           <p class="card-text">{{ $showpost->message }}</p>

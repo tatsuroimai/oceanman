@@ -10,7 +10,7 @@
         <div class="card-body">
           <form method="post" action="{{ route('post.remove') }}">
             @csrf
-            <input type="hidden" name="id" value="{{ $deletepost->id }}">
+            <input type="hidden" name="post_id" value="{{ $deletepost->id }}">
             <div>削除してよろしいですか？</div>
             <div class="form-group row mb-0">
                 <div class="col-6 offset-md-5">
