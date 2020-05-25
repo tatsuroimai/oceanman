@@ -63,7 +63,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="position:relative; padding-left:50px">
-                                    @if($authUser->thumbnail)
+                                    @if(Auth::user()->thumbnail)
                                         <img src="{{ $authUser->thumbnail }}" style="width:30px; height:30px; position:absolute; top:5px; left:10px; border-radius:50%" alt="">
                                     @else
                                         <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" style="width:30px; height:30px; position:absolute; top:5px; left:10px; border-radius:50%" alt="">
