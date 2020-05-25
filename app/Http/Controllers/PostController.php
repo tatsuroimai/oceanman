@@ -13,8 +13,8 @@ class PostController extends Controller
 {
     public function index(Request $request){
         $authUser = Auth::user();
-        $items = Post::orderBy('id', 'desc')->get();
-        return view('post.index', compact('authUser','items'));
+        $posts = Post::orderBy('id', 'desc')->get();
+        return view('post.index', compact('authUser','posts'));
     }
     public function add(Request $request){
         $authUser = Auth::user();
@@ -22,9 +22,9 @@ class PostController extends Controller
     }
     public function create(PostAddRequest $request){
         // $postimagename = $request->file('image')->hashName(); ←多分あってる
-        $postimagename = $request->file('image');
-        // dd($postimagename);
-        $path = Storage::disk('s3')->putFile('/',$postimagename,'public');
+        $postimage = $request->file('image');
+        // dd($postimage);
+        $path = Storage::disk('s3')->putFile('/',$postimage,'public');
         $id = Auth::id();
         $param = [
             'title'=>$request->title,
@@ -42,10 +42,7 @@ class PostController extends Controller
         $showpost = Post::find($request->post_id);
         $postuser = User::find($showpost->user_id);
         $showcomments = Comment::where('post_id', $request->post_id)->get();
-        $showcomments2 = Comment::where('post_id', $request->post_id);
-        $showcommentsids = Comment::select('user_id')->where('post_id', $request->post_id)->get();
-        $users = User::all();
-        return view('post.show', compact('authUser','showpost','postuser','showcomments','showcomments2','showcommentsids','users'));
+        return view('post.show', compact('authUser','showpost','postuser','showcomments'));
     }
     public function edit(Request $request){
         $authUser = Auth::user();
@@ -53,17 +50,14 @@ class PostController extends Controller
         return view('post.edit', compact('authUser','editpost'));
     }
     public function update(PostUpdateRequest $request){
-        // $editimagename = $request->file('image')->hashName();
-        // $request->file('image')->storeAs('public/post', $editimagename);
         $id = Auth::id();
         $param = [
             'title'=>$request->title,
             'message'=>$request->message,
             'topic'=>$request->topic,
-            // 'image'=>$editimagename,
             'user_id'=>$id,
         ];
-        $post = Post::find($request->id);
+        $post = Post::find($request->postid);
         $post->fill($param)->save();
         return redirect()->back()->with('post_success', 'ポストを編集しました。');
     }
@@ -73,10 +67,10 @@ class PostController extends Controller
         return view('post.delete', compact('authUser','deletepost'));
     }
     public function remove(Request $request){
-        $post = Post::find($request->id);
-        $delimgname = $post->image;
-        Storage::delete('public/post/' . $delimgname);
-        Post::find($request->id)->delete();
+        $post = Post::find($request->post_id);
+        $deleteimage = basename($post->image);
+        Storage::disk('s3')->delete($deleteimage);
+        $post->delete();
         return redirect('/');
     }
 }

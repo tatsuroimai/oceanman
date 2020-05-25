@@ -23,8 +23,8 @@
   </div>
 
   <div class="gallery">    
-    @foreach($items as $item)        
-          <a href="{{ route('post.show', ['post_id'=>$item->id]) }}" class="stretched-link"><img class="card-img-top" src="{{ asset('storage/post/' . $item->image) }}" alt=""></a>
+    @foreach($posts as $post)        
+          <a href="{{ route('post.show', ['post_id'=>$post->id]) }}" class="stretched-link"><img class="card-img-top" src="{{ asset('storage/post/' . $post->image) }}" alt=""></a>
     @endforeach
   </div>
   

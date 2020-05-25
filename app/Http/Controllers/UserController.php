@@ -18,10 +18,10 @@ class UserController extends Controller
     public function index(Request $request){
         $authUser = Auth::user();
         $user_id = Auth::id();
-        $items = Post::where('user_id', $user_id)->orderBy('id', 'desc')->get();
+        $posts = Post::where('user_id', $user_id)->orderBy('id', 'desc')->get();
         $param = [
             'authUser'=>$authUser,
-            'items'=>$items,
+            'posts'=>$posts,
         ];
 
         return view('user.index',$param);
@@ -30,10 +30,7 @@ class UserController extends Controller
     
     public function edit(Request $request){
         $authUser = Auth::user();
-        $param = [
-            'authUser'=>$authUser,
-        ];
-        return view('user.edit',$param);
+        return view('user.edit', compact('authUser'));
     }
 
     public function update(Request $request){
@@ -64,24 +61,27 @@ class UserController extends Controller
         
         $uploadfile = $request->file('thumbnail');
 
-        if(!empty($uploadfile)){
+        if($uploadfile){
             $user = User::find($request->id);
             $delimgname = $user->thumbnail;
-            Storage::delete('public/user/' . $delimgname);
+            // Storage::delete('public/user/' . $delimgname);
+            Storage::disk('s3')->delete($delimgname);
 
-            $thumbnailname = $request->file('thumbnail')->hashName();
-            $request->file('thumbnail')->storeAs('public/user', $thumbnailname);
+            // $thumbnailname = $request->file('thumbnail')->hashName();
+            // $request->file('thumbnail')->storeAs('public/user', $thumbnailname);
+            $thumbnail = $request->file('thumbnail');
+            $path = Storage::disk('s3')->putFile('/',$thumbnail,'public');
+            
 
             $param = [
                 'name'=>$request->name,
                 'email'=>$request->email,
-                'thumbnail'=>$thumbnailname,
+                'thumbnail'=>Storage::disk('s3')->url($path),
             ];
         }else{
             $param = [
                 'name'=>$request->name,
-                'email'=>$request->email,
-                    
+                'email'=>$request->email,             
             ];
         }
 
@@ -131,19 +131,20 @@ class UserController extends Controller
     }
 
     public function remove(Request $request){
-        $user = Auth::user();
-        $delthumbnail = $user->thumbnail;
-        Storage::delete('public/user/' . $delthumbnail);
+        $authUser = Auth::user();
+        $delthumbnail = basename($authUser->thumbnail);
+        // Storage::delete('public/user/' . $delthumbnail);
+        Storage::disk('s3')->delete($delthumbnail);
 
         $id = Auth::id();
-        $deleteposts = Post::where('user_id', $id);
-        if(!empty($deleteposts)){
-            $delposts = Post::where('user_id', $id)->get();
-            foreach($delposts as $delpost){
-                $delimage = $delpost->image;
-                Storage::delete('public/post/' . $delimage);
+        $deleteposts = Post::where('user_id', $id)->get();
+        if($deleteposts){
+            foreach($deleteposts as $deletepost){
+                $deleteimage = basename($deletepost->image);
+                // Storage::delete('public/post/' . $delimage);
+                Storage::disk('s3')->delete($deleteimage);
+                $deletepost->delete;
             }
-            $deleteposts->delete();
         }
 
         User::find($id)->delete();
@@ -156,12 +157,11 @@ class UserController extends Controller
         $userid = $request->user_id;
         $showuser = User::find($userid);
 
-
-        $items = Post::where('user_id', $userid)->orderBy('id', 'desc')->get();
+        $posts = Post::where('user_id', $userid)->orderBy('id', 'desc')->get();
         $param = [
             'authUser'=>$authUser,
             'showuser'=>$showuser,
-            'items'=>$items,
+            'posts'=>$posts,
         ];
 
         return view('user.show', $param);

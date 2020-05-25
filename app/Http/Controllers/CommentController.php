@@ -11,11 +11,11 @@ use Validator;
 class CommentController extends Controller
 {
     public function add(Request $request){
-        $id = Auth::id();
+        $authUserId = Auth::id();
 
         $param = [
             'comment'=>$request->comment,
-            'user_id'=>$id,
+            'user_id'=>$authUserId,
             'post_id'=>$request->post_id,
         ];
 

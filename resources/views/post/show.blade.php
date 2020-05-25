@@ -11,7 +11,7 @@
         <div class="card-body">
           <div class="row mb-5">
             <a href="{{ route('user.show', ['user_id'=>$showpost->user_id]) }}">
-              <img class="showpostuser" src="{{ asset('storage/user/' . $postuser->thumbnail) }}" style="width:50px; height:50px; position:absolute; top:20px; left:20px; border-radius:50%" alt=""> 
+              <img class="showpostuser" src="{{ $postuser->thumbnail) }}" style="width:50px; height:50px; position:absolute; top:20px; left:20px; border-radius:50%" alt=""> 
             </a>
             <div style="position:relative; top:15px; left:90px">{{ $postuser->name }}</div>        
           </div>
@@ -28,7 +28,7 @@
             @foreach($showcomments as $comment)
               <div class="row comment-item my-3" style="border-radius:50">
                 <a href="{{ route('user.show', ['user_id'=>$comment->user_id]) }}">
-                  <img src="{{ asset('storage/user/' . $comment->user->thumbnail) }}" style="width:40px; height:40px; border-radius:50%; position:relative; left:40px" alt="">
+                  <img src="{{ $comment->user->thumbnail) }}" style="width:40px; height:40px; border-radius:50%; position:relative; left:40px" alt="">
                 </a>
                 <div style="position:relative; top:10px; left:60px">{{ $comment->comment }}</div>
               </div>    

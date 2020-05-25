@@ -5,7 +5,7 @@
     <div class="card" style="max-width: 1000px;">
         <div class="row no-gutters">
             <div class="col-md-5">
-                <img class="card-img-top" src="{{ asset('storage/post/' . $editpost->image) }}" alt="">
+                <img class="card-img-top" src="{{ $editpost->image) }}" alt="">
             </div>
             <div class="col-md-7">
                 <div class="header mt-4 mb-1 text-center"><h4>投稿の編集</h4></div>
@@ -21,7 +21,7 @@
                 <div class="card-body">
                 <form method="POST" action="{{ route('post.update') }}" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $editpost->id }}">
+                        <input type="hidden" name="id" value="{{ $editpost->postid }}">
 
                         <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">タイトル</label>
