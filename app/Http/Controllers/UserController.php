@@ -34,9 +34,8 @@ class UserController extends Controller
     }
 
     public function update(Request $request){
-        // Validator check
+        
         $rules = [
-            'id' => 'integer|required',
             'name' => 'required',
             'email' => 'required',
         
@@ -44,8 +43,6 @@ class UserController extends Controller
 
         ];
         $messages = [
-            'id.integer' => 'SystemError:システム管理者にお問い合わせください',
-            'id.required' => 'SystemError:システム管理者にお問い合わせください',
             'name.required' => 'ユーザー名が未入力です',
             'email.required' => 'メールアドレスが未入力です',
             
@@ -58,19 +55,19 @@ class UserController extends Controller
                 ->withInput();
         }
 
-        
-        $uploadfile = $request->file('thumbnail');
+        $authUser = Auth::user();
+        $newthumbnail = $request->file('thumbnail');
 
-        if($uploadfile){
-            $user = User::find($request->id);
-            $delimgname = $user->thumbnail;
+        if($newthumbnail){
+            
+            $delimgname = basename($authUser->thumbnail);
             // Storage::delete('public/user/' . $delimgname);
             Storage::disk('s3')->delete($delimgname);
 
             // $thumbnailname = $request->file('thumbnail')->hashName();
             // $request->file('thumbnail')->storeAs('public/user', $thumbnailname);
-            $thumbnail = $request->file('thumbnail');
-            $path = Storage::disk('s3')->putFile('/',$thumbnail,'public');
+            // $thumbnail = $request->file('thumbnail');
+            $path = Storage::disk('s3')->putFile('/',$newthumbnail,'public');
             
 
             $param = [
@@ -85,7 +82,7 @@ class UserController extends Controller
             ];
         }
 
-        User::find($request->id)->update($param);
+        User::find($authUser->id)->update($param);
         return redirect(route('user.edit'))->with('success', '保存しました。');
     }
 
@@ -104,17 +101,6 @@ class UserController extends Controller
         if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
             return redirect()->back()->with('change_password_error', '新しいパスワードが現在のパスワードと同じです。違うパスワードを設定してください。');
         }
-
-        // $validator = Validator::make($request->all(), [
-        //     'current-password' => 'required',
-        //     'new-password' => 'required|string|min:6|confirmed',
-        // ]);
-
-        // if($validator->fails()){
-        //     return redirect('/user/changepassword')
-        //         ->withErrors($validator)
-        //         ->withInput();
-        // }
 
         $user = Auth::user();
         $user->password = bcrypt($request->get('new-password'));
@@ -153,10 +139,15 @@ class UserController extends Controller
 
     public function show(Request $request){
         $authUser = Auth::user();
-
         $userid = $request->user_id;
-        $showuser = User::find($userid);
 
+        if($authUser->id == $userid){
+            return redirect(route('user.index'));
+        }
+
+
+        
+        $showuser = User::find($userid);
         $posts = Post::where('user_id', $userid)->orderBy('id', 'desc')->get();
         $param = [
             'authUser'=>$authUser,

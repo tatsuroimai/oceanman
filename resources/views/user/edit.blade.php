@@ -18,7 +18,7 @@
     <form method="post" action="{{ route('user.update') }}" enctype="multipart/form-data">
         @csrf
 
-        <input type="hidden" name="id" value="{{ $authUser->id }}">
+        <!-- <input type="hidden" name="id" value="{{ $authUser->id }}"> -->
         @error('id')
             <div class="error">{{ $message }}</div>
         @enderror

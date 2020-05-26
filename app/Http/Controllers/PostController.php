@@ -43,7 +43,7 @@ class PostController extends Controller
         // $postuser = User::find($showpost->user_id);
         $showcomments = Comment::where('post_id', $request->post_id)->get();
         // $showcomments = $showpost->comments(); 的なできるんじゃね？
-        return view('post.show', compact('authUser','showpost','postuser','showcomments'));
+        return view('post.show', compact('authUser','showpost','showcomments'));
     }
     public function edit(Request $request){
         $authUser = Auth::user();
@@ -59,6 +59,7 @@ class PostController extends Controller
             'user_id'=>$authUserId,
         ];
         $post = Post::find($request->postid);
+        // var_dump($post);
         $post->fill($param)->save();
         return redirect()->back()->with('post_success', 'ポストを編集しました。');
     }

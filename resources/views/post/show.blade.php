@@ -5,15 +5,21 @@
   <div class="card mb-3" style="max-width: 1000px;">
     <div class="row no-gutters">
       <div class="col-md-5">
-        <img class="card-img-top" src="{{ $showpost->image) }}" alt="">
+        <img class="card-img-top" src="{{ $showpost->image }}" alt="">
       </div>
       <div class="col-md-7">
         <div class="card-body">
           <div class="row mb-5">
-            <a href="{{ route('user.show', ['user_id'=>$showpost->user_id]) }}">
-              <img class="showpostuser" src="{{ $showpost->user->thumbnail) }}" style="width:50px; height:50px; position:absolute; top:20px; left:20px; border-radius:50%" alt=""> 
-            </a>
-            <div style="position:relative; top:15px; left:90px">{{ $showpost->user->name }}</div>        
+            @if($authUser->thumbnail)
+              <a href="{{ route('user.show', ['user_id'=>$showpost->user_id]) }}">
+                <img class="showpostuser" src="{{ $showpost->user->thumbnail }}" style="width:50px; height:50px; position:absolute; top:20px; left:20px; border-radius:50%" alt=""> 
+              </a>
+            @else
+              <a href="{{ route('user.show', ['user_id'=>$showpost->user_id]) }}">
+                <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" style="width:50px; height:50px; position:absolute; top:20px; left:20px; border-radius:50%" alt="">
+              </a>
+            @endif
+              <div style="position:relative; top:15px; left:90px">{{ $showpost->user->name }}</div>        
           </div>
           <h4 class="card-title">{{ $showpost->title }}</h4>
           <p class="card-text">{{ $showpost->message }}</p>
@@ -27,9 +33,15 @@
           @if($showcomments)
             @foreach($showcomments as $comment)
               <div class="row comment-item my-3" style="border-radius:50">
-                <a href="{{ route('user.show', ['user_id'=>$comment->user_id]) }}">
-                  <img src="{{ $comment->user->thumbnail) }}" style="width:40px; height:40px; border-radius:50%; position:relative; left:40px" alt="">
-                </a>
+                @if($comment->user->thumbnail)
+                  <a href="{{ route('user.show', ['user_id'=>$comment->user_id]) }}">
+                    <img src="{{ $comment->user->thumbnail }}" style="width:40px; height:40px; border-radius:50%; position:relative; left:40px" alt="">
+                  </a>
+                @else
+                  <a href="{{ route('user.show', ['user_id'=>$comment->user_id]) }}">
+                    <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" style="width:40px; height:40px; border-radius:50%; position:relative; left:40px" alt="">
+                  </a>
+                @endif
                 <div style="position:relative; top:10px; left:60px">{{ $comment->comment }}</div>
               </div>    
             @endforeach
