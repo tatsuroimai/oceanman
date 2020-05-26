@@ -13,7 +13,7 @@ class UserUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'email' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'ユーザー名が未入力ですだよ',
+            'email.required' => 'メールアドレスが未入力ですだよ',
         ];
     }
 }
