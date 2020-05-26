@@ -75,6 +75,7 @@
                                     更新
                                 </button>
                             </div>
+                            <a href="{{ route('user.edit') }}" class="btn btn-primary">戻る</a>
                         </div>
                     </form>
                 </div>
