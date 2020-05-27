@@ -10,7 +10,7 @@
       <div class="col-md-7">
         <div class="card-body">
           <div class="row mb-5">
-            @if($authUser->thumbnail)
+            @if($showpost->user->thumbnail)
               <a href="{{ route('user.show', ['user_id'=>$showpost->user_id]) }}">
                 <img class="showpostuser" src="{{ $showpost->user->thumbnail }}" style="width:50px; height:50px; position:absolute; top:20px; left:20px; border-radius:50%" alt=""> 
               </a>

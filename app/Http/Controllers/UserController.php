@@ -42,9 +42,9 @@ class UserController extends Controller
         if($newthumbnail){
             
             $delimgname = basename($authUser->thumbnail);
-            Storage::disk('s3')->delete($delimgname);
+            Storage::disk('s3')->delete('userthumbnails/' . $delimgname);
 
-            $path = Storage::disk('s3')->putFile('/',$newthumbnail,'public');
+            $path = Storage::disk('s3')->putFile('userthumbnails',$newthumbnail,'public');
             
             $param = [
                 'name'=>$request->name,
@@ -95,15 +95,15 @@ class UserController extends Controller
     public function remove(Request $request){
         $authUser = Auth::user();
         $delthumbnail = basename($authUser->thumbnail);
-        Storage::disk('s3')->delete($delthumbnail);
+        Storage::disk('s3')->delete('userthumbnails/' . $delthumbnail);
 
         $id = Auth::id();
         $deleteposts = Post::where('user_id', $id)->get();
         if($deleteposts){
             foreach($deleteposts as $deletepost){
                 $deleteimage = basename($deletepost->image);
-                Storage::disk('s3')->delete($deleteimage);
-                $deletepost->delete;
+                Storage::disk('s3')->delete('postimages/' . $deleteimage);
+                $deletepost->delete();
             }
         }
 

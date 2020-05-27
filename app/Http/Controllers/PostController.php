@@ -24,7 +24,7 @@ class PostController extends Controller
         // $postimagename = $request->file('image')->hashName(); ←多分あってる
         $postimage = $request->file('image');
         // dd($postimage);
-        $path = Storage::disk('s3')->putFile('/',$postimage,'public');
+        $path = Storage::disk('s3')->putFile('postimages',$postimage,'public');
         $id = Auth::id();
         $param = [
             'title'=>$request->title,
@@ -71,7 +71,7 @@ class PostController extends Controller
     public function remove(Request $request){
         $post = Post::find($request->post_id);
         $deleteimage = basename($post->image);
-        Storage::disk('s3')->delete($deleteimage);
+        Storage::disk('s3')->delete('postimages/' . $deleteimage);
         $post->delete();
         return redirect('/');
     }
