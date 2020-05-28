@@ -45,10 +45,21 @@
                     </ul>
 
                     <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <div class="form-group">        
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control">
+                                <option>トピックで検索</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>                           
+                        </div>
+                        <button class="btn btn-outline-success ml-2 my-2 my-sm-0" type="submit">Search</button>
                     </form>
-
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
