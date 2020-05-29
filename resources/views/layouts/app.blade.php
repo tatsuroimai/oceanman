@@ -51,10 +51,9 @@
                         <div class="form-group">
                             <select class="form-control">
                                 <option>トピックで検索</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                @foreach($topics as $topic)
+                                <option>{{ $topic->topic }}</option>
+                                @endforeach
                             </select>                           
                         </div>
                         <button class="btn btn-outline-success ml-2 my-2 my-sm-0" type="submit">Search</button>

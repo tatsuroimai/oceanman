@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Comment;
+use App\Topic;
 
 class Post extends Model
 {
@@ -16,5 +17,9 @@ class Post extends Model
 
     public function comments(){
         return $this->hasMany('App\Post');
+    }
+
+    public function topic(){
+        return $this->belongsTo('App\Topic');
     }
 }

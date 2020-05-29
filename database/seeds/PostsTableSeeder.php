@@ -19,7 +19,7 @@ class PostsTableSeeder extends Seeder
             'title' => '犬',
             'message' => '犬飼いたいな',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/animal1.jpg',
-            'topic' => 'animal',
+            'topic_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -30,7 +30,7 @@ class PostsTableSeeder extends Seeder
             'title' => '仕事中です',
             'message' => '毎日充実！',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/tech1.jpg',
-            'topic' => 'technology',
+            'topic_id' => 4,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -41,7 +41,7 @@ class PostsTableSeeder extends Seeder
             'title' => '猫飼いたい',
             'message' => 'ニューヨークで見た絵です',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/art1.jpg',
-            'topic' => 'art',
+            'topic_id' => 5,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -52,7 +52,7 @@ class PostsTableSeeder extends Seeder
             'title' => 'ブレードランナーっぽい',
             'message' => 'けどすごいキレイ、行きたい',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/scenery1.jpg',
-            'topic' => 'scenery',
+            'topic_id' => 2,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -63,7 +63,7 @@ class PostsTableSeeder extends Seeder
             'title' => '感動した',
             'message' => 'すごいきれいだった',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/art3.jpg',
-            'topic' => 'art',
+            'topic_id' => 5,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -74,7 +74,7 @@ class PostsTableSeeder extends Seeder
             'title' => 'ブレードランナーっぽい',
             'message' => '良い',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/tech2.jpg',
-            'topic' => 'technology',
+            'topic_id' => 4,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -85,7 +85,7 @@ class PostsTableSeeder extends Seeder
             'title' => '撮影完了！',
             'message' => '最高のロケーションでした',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/fashion1.jpg',
-            'topic' => 'fashion',
+            'topic_id' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -96,7 +96,7 @@ class PostsTableSeeder extends Seeder
             'title' => '猫が通った',
             'message' => 'どこにでもいるね',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/scenery2.jpg',
-            'topic' => 'scenery',
+            'topic_id' => 2,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -107,7 +107,7 @@ class PostsTableSeeder extends Seeder
             'title' => '猫かわいい',
             'message' => '足に乗ってきた',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/animal2.jpg',
-            'topic' => 'animal',
+            'topic_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -118,7 +118,7 @@ class PostsTableSeeder extends Seeder
             'title' => 'VRを体験！',
             'message' => 'バイオハザード怖すぎた',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/tech3.jpg',
-            'topic' => 'technology',
+            'topic_id' => 4,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -129,7 +129,7 @@ class PostsTableSeeder extends Seeder
             'title' => '奇妙な雰囲気の猫',
             'message' => '奇妙な感じ',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/art2.jpg',
-            'topic' => 'art',
+            'topic_id' => 5,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -140,7 +140,7 @@ class PostsTableSeeder extends Seeder
             'title' => 'ドローンで遊んだ',
             'message' => '良い景色を撮影できた！',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/tech4.jpg',
-            'topic' => 'technology',
+            'topic_id' => 4,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -151,7 +151,7 @@ class PostsTableSeeder extends Seeder
             'title' => '鳥がいた！',
             'message' => 'ジャングルで発見した',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/animal3.jpg',
-            'topic' => 'animal',
+            'topic_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -162,7 +162,7 @@ class PostsTableSeeder extends Seeder
             'title' => '信じられない景色！',
             'message' => '感動した',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/scenery3.jpg',
-            'topic' => 'scenery',
+            'topic_id' => 2,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -173,7 +173,7 @@ class PostsTableSeeder extends Seeder
             'title' => '新しいブランド！',
             'message' => 'みんなよろしく！',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/fashion4.jpg',
-            'topic' => 'fashion',
+            'topic_id' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -184,7 +184,7 @@ class PostsTableSeeder extends Seeder
             'title' => 'ドローンで撮った',
             'message' => '光線がすごいでしょ！',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/scenery4.jpg',
-            'topic' => 'scenery',
+            'topic_id' => 2,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -195,7 +195,7 @@ class PostsTableSeeder extends Seeder
             'title' => 'どういう意味',
             'message' => 'なぜ囲まれてるの',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/art4.jpg',
-            'topic' => 'art',
+            'topic_id' => 5,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -206,7 +206,7 @@ class PostsTableSeeder extends Seeder
             'title' => '魚きれい',
             'message' => '初めて見たこんなキレイな魚',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/animal4.jpg',
-            'topic' => 'animal',
+            'topic_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -217,7 +217,7 @@ class PostsTableSeeder extends Seeder
             'title' => 'ブレードランナーっぽい？',
             'message' => 'カニエ・ウェストかな',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/fashion3.jpg',
-            'topic' => 'fashion',
+            'topic_id' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -228,7 +228,7 @@ class PostsTableSeeder extends Seeder
             'title' => 'ペンギン！',
             'message' => '神々しいところ',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/animal5.jpg',
-            'topic' => 'animal',
+            'topic_id' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  
@@ -239,7 +239,7 @@ class PostsTableSeeder extends Seeder
             'title' => '良い感じ',
             'message' => '良い天気だった',
             'image' => 'https://oceanmanimages.s3-ap-northeast-1.amazonaws.com/postimages/fashion2.jpg',
-            'topic' => 'fashion',
+            'topic_id' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];  

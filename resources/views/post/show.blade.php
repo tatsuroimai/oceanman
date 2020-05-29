@@ -23,7 +23,7 @@
           </div>
           <h4 class="card-title">{{ $showpost->title }}</h4>
           <p class="card-text">{{ $showpost->message }}</p>
-          <p　class="text-right">{{ 'トピック: ' . $showpost->topic }}</p>
+          <p　class="text-right">{{ 'トピック: ' . $showpost->topic->topic }}</p>
           @if($showpost->user_id == Auth::id())
           <a href="{{ route('post.edit', ['post_id'=>$showpost->id]) }}" class="btn btn-outline-secondary">編集</a>
           @endif

@@ -7,31 +7,28 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-// use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Storage;
 use Hash;
 use App\Post;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Topic;
 
 class UserController extends Controller
 {
     public function index(Request $request){
         $authUser = Auth::user();
-        $user_id = Auth::id();
-        $posts = Post::where('user_id', $user_id)->orderBy('id', 'desc')->get();
-        $param = [
-            'authUser'=>$authUser,
-            'posts'=>$posts,
-        ];
+        $posts = Post::where('user_id', Auth::id())->orderBy('id', 'desc')->get();
+        $topics = Topic::all();
 
-        return view('user.index',$param);
+        return view('user.index', compact('authUser','posts','topics'));
     }
 
     
     public function edit(Request $request){
         $authUser = Auth::user();
-        return view('user.edit', compact('authUser'));
+        $topics = Topic::all();
+        return view('user.edit', compact('authUser','topics'));
     }
 
     public function update(UserUpdateRequest $request){
@@ -66,7 +63,8 @@ class UserController extends Controller
 
     public function showChangePasswordForm(){
         $authUser = Auth::user();
-        return view('auth.changepassword', compact('authUser'));
+        $topics = Topic::all();
+        return view('auth.changepassword', compact('authUser','topics'));
     }
 
     public function changePassword(ChangePasswordRequest $request){
@@ -89,7 +87,8 @@ class UserController extends Controller
     
     public function delete(Request $request){
         $authUser = Auth::user();
-        return view('user.delete', compact('authUser'));
+        $topics = Topic::all();
+        return view('user.delete', compact('authUser','topics'));
     }
 
     public function remove(Request $request){
@@ -113,6 +112,7 @@ class UserController extends Controller
 
     public function show(Request $request){
         $authUser = Auth::user();
+        $topics = Topic::all();
         $userid = $request->user_id;
 
         if($authUser->id == $userid){
@@ -121,12 +121,7 @@ class UserController extends Controller
         
         $showuser = User::find($userid);
         $posts = Post::where('user_id', $userid)->orderBy('id', 'desc')->get();
-        $param = [
-            'authUser'=>$authUser,
-            'showuser'=>$showuser,
-            'posts'=>$posts,
-        ];
 
-        return view('user.show', $param);
+        return view('user.show', compact('authUser','showuser','posts','topics'));
     }
 }

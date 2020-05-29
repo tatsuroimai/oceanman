@@ -9,19 +9,22 @@ use Storage;
 use App\Http\Requests\PostAddRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\User;
+use App\Topic;
+
 class PostController extends Controller
 {
     public function index(Request $request){
         $authUser = Auth::user();
         $posts = Post::orderBy('id', 'desc')->get();
-        return view('post.index', compact('authUser','posts'));
+        $topics = Topic::all();
+        return view('post.index', compact('authUser','posts','topics'));
     }
     public function add(Request $request){
         $authUser = Auth::user();
-        return view('post.add', compact('authUser'));
+        $topics = Topic::all();
+        return view('post.add', compact('authUser','topics'));
     }
     public function create(PostAddRequest $request){
-        // $postimagename = $request->file('image')->hashName(); ←多分あってる
         $postimage = $request->file('image');
         // dd($postimage);
         $path = Storage::disk('s3')->putFile('postimages',$postimage,'public');
@@ -39,16 +42,18 @@ class PostController extends Controller
     }
     public function show(Request $request){
         $authUser = Auth::user();
+        $topics = Topic::all();
         $showpost = Post::find($request->post_id);
         // $postuser = User::find($showpost->user_id);
         $showcomments = Comment::where('post_id', $request->post_id)->get();
         // $showcomments = $showpost->comments(); 的なできるんじゃね？
-        return view('post.show', compact('authUser','showpost','showcomments'));
+        return view('post.show', compact('authUser','showpost','showcomments','topics'));
     }
     public function edit(Request $request){
         $authUser = Auth::user();
+        $topics = Topic::all();
         $editpost = Post::find($request->post_id);
-        return view('post.edit', compact('authUser','editpost'));
+        return view('post.edit', compact('authUser','editpost','topics'));
     }
     public function update(PostUpdateRequest $request){
         $authUserId = Auth::id();
@@ -65,8 +70,9 @@ class PostController extends Controller
     }
     public function delete(Request $request){
         $authUser = Auth::user();
+        $topics = Topic::all();
         $deletepost = Post::find($request->post_id);
-        return view('post.delete', compact('authUser','deletepost'));
+        return view('post.delete', compact('authUser','deletepost','topics'));
     }
     public function remove(Request $request){
         $post = Post::find($request->post_id);
