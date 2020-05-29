@@ -92,6 +92,8 @@ class PostController extends Controller
     public function search(Request $request){
         $authUser = Auth::user();
         $topics = Topic::all();
-        return view('post.search', compact('authUser','topics'));
+        $searchtopic = Topic::where('topic', $request->topic)->first();
+        $searchposts = $searchtopic->posts()->get();
+        return view('post.search', compact('authUser','topics','searchposts'));
     }
 }

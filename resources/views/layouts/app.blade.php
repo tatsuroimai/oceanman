@@ -44,13 +44,13 @@
 
                     </ul>
 
-                    <form method="POST" action="{{ route('post.search') }}" class="form-inline">
+                    <form method="GET" action="{{ route('post.search') }}" class="form-inline">
                         @csrf
                         <div class="form-group">        
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchobj">
                         </div>
                         <div class="form-group">
-                            <select class="form-control">
+                            <select class="form-control" name="topic">
                                 <option>トピックで検索</option>
                                 @foreach($topics as $topic)
                                 <option>{{ $topic->topic }}</option>
@@ -110,7 +110,7 @@
     <script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
 
     
-    @if(!preg_match('/edit|changepassword|delete|post|add|show/', $_SERVER['REQUEST_URI']) || strstr($_SERVER['REQUEST_URI'], '/user/show'))
+    @if(!preg_match('/edit|changepassword|delete|post|add|show/', $_SERVER['REQUEST_URI']) || strstr($_SERVER['REQUEST_URI'], '/user/show') || strstr($_SERVER['REQUEST_URI'], '/post/search'))
         
         <script src="{{ asset('/js/macy.js') }}"></script>
     @endif
