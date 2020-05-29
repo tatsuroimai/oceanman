@@ -5,7 +5,7 @@
   <div class="gallery">    
     @foreach($posts as $post)     
         <div class="card mb-4">
-          <a href="{{ route('post.show', ['post_id'=>$post->id]) }}" class="stretched-link"><img class="card-img-top" src="{{ $post->image }}" alt=""></a>
+          <a href="{{ route('post.show', ['post_id'=>$post->id]) }}"><img class="card-img-top" src="{{ $post->image }}" alt=""></a>
         </div>   
     @endforeach
   </div>
