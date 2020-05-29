@@ -51,6 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/post/delete', 'PostController@delete')->name('post.delete');
     Route::post('/post/delete', 'PostController@remove')->name('post.remove');
 
+    Route::post('/post/search', 'PostController@search')->name('post.search');
+
 
     Route::post('/comment/add', 'CommentController@add')->name('comment.add');
 });

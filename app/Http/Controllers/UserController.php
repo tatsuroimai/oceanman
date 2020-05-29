@@ -18,7 +18,8 @@ class UserController extends Controller
 {
     public function index(Request $request){
         $authUser = Auth::user();
-        $posts = Post::where('user_id', Auth::id())->orderBy('id', 'desc')->get();
+        // $posts = Post::where('user_id', Auth::id())->orderBy('id', 'desc')->get();
+        $posts = $authUser->posts()->orderBy('id', 'desc')->get();
         $topics = Topic::all();
 
         return view('user.index', compact('authUser','posts','topics'));
@@ -120,7 +121,8 @@ class UserController extends Controller
         }
         
         $showuser = User::find($userid);
-        $posts = Post::where('user_id', $userid)->orderBy('id', 'desc')->get();
+        // $posts = Post::where('user_id', $userid)->orderBy('id', 'desc')->get();
+        $posts = $showuser->posts()->orderBy('id', 'desc')->get();
 
         return view('user.show', compact('authUser','showuser','posts','topics'));
     }

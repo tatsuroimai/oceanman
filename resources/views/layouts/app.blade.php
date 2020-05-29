@@ -44,7 +44,8 @@
 
                     </ul>
 
-                    <form class="form-inline">
+                    <form method="POST" action="{{ route('post.search') }}" class="form-inline">
+                        @csrf
                         <div class="form-group">        
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         </div>

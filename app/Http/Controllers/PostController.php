@@ -28,11 +28,20 @@ class PostController extends Controller
         $postimage = $request->file('image');
         // dd($postimage);
         $path = Storage::disk('s3')->putFile('postimages',$postimage,'public');
+
+        $inputtopic = Topic::where('topic', $request->topic)->first();
+        if(empty($inputtopic)){
+            $topic = new Topic;
+            $topic->topic = $request->topic;
+            $topic->save();
+        }
+
         $id = Auth::id();
+        $posttopic = Topic::where('topic', $request->topic)->first();
         $param = [
             'title'=>$request->title,
             'message'=>$request->message,
-            'topic'=>$request->topic,
+            'topic_id'=>$posttopic->id,
             'image'=>Storage::disk('s3')->url($path),
             'user_id'=>$id,
         ];
@@ -44,9 +53,7 @@ class PostController extends Controller
         $authUser = Auth::user();
         $topics = Topic::all();
         $showpost = Post::find($request->post_id);
-        // $postuser = User::find($showpost->user_id);
-        $showcomments = Comment::where('post_id', $request->post_id)->get();
-        // $showcomments = $showpost->comments(); 的なできるんじゃね？
+        $showcomments = $showpost->comments()->get();
         return view('post.show', compact('authUser','showpost','showcomments','topics'));
     }
     public function edit(Request $request){
@@ -80,5 +87,11 @@ class PostController extends Controller
         Storage::disk('s3')->delete('postimages/' . $deleteimage);
         $post->delete();
         return redirect('/');
+    }
+
+    public function search(Request $request){
+        $authUser = Auth::user();
+        $topics = Topic::all();
+        return view('post.search', compact('authUser','topics'));
     }
 }

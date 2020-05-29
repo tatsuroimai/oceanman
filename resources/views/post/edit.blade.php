@@ -54,7 +54,7 @@
                             <label for="topic" class="col-md-4 col-form-label text-md-right">トピック</label>
 
                             <div class="col-md-6">
-                                <input id="topic" type="text" class="form-control @error('topic') is-invalid @enderror" name="topic" value="{{ $editpost->topic }}">
+                                <input id="topic" type="text" class="form-control @error('topic') is-invalid @enderror" name="topic" value="{{ $editpost->topic->topic }}">
 
                                 @error('topic')
                                     <span class="invalid-feedback" role="alert">
