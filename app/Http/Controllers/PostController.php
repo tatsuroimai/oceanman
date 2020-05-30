@@ -97,9 +97,6 @@ class PostController extends Controller
         $topic = $request->topic;
         $searchtopic = Topic::where('topic', $request->topic)->first();
 
-        
-
-
         if($keyword && $topic != 'トピックで検索'){
             $topicposts = $searchtopic->posts();  
             $posts = $topicposts->where('title', 'like', '%'.$keyword.'%')
@@ -116,7 +113,7 @@ class PostController extends Controller
 
         }elseif(empty($keyword) && $topic != 'トピックで検索'){
             $posts = $searchtopic->posts()->get();  
-            $users = null;
+            $users = 'noneed';
 
         }elseif($keyword && $topic == 'トピックで検索'){
             $posts = Post::where('title', 'like', '%'.$keyword.'%')
@@ -139,5 +136,3 @@ class PostController extends Controller
         return view('post.search', compact('authUser','topics','posts','users'));
     }
 }
-
-// $users = User::where('name', 'like', '%'.$keyword.'%')->get();

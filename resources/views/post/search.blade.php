@@ -6,11 +6,13 @@
   <h2>該当するポスト、またはユーザーは見つかりませんでしたZE!!!。</h2>
   @endif -->
 
-  @if(empty($users))
+  @if($users == 'noneed')
+  <div></div>
+  @elseif(empty($users))
   <div>該当するユーザーはありませんでした。</div>
   @endif
 
-  @if(!empty($users))
+  @if(!empty($users) && $users != 'noneed')
     <h2>該当したユーザー</h2>
     <div class="row my-4">
       @foreach($users as $user)
@@ -29,7 +31,7 @@
   @endempty
 
   @if($posts) 
-  <h2>複数のポストが見つかりました！</h2>
+  <!-- <h2>複数のポストが見つかりました！</h2> -->
   <div class="gallery">   
     @foreach($posts as $post)     
         <div class="card mb-4">
