@@ -5,9 +5,9 @@
   <div class="row my-4">
     <div class="col-md-4 mb-5">
     @if($showuser->thumbnail)
-    <img src="{{ $showuser->thumbnail }}" class="thumbnail offset-5">
+    <img src="{{ $showuser->thumbnail }}" class="thumbnail thumbprofile offset-5">
     @else
-    <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" class="thumbnail offset-5" alt="">
+    <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" class="thumbnail thumbprofile offset-5" alt="">
     @endif    
     </div>
     <div class="col-md-7">

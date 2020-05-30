@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container">
-  @if(empty($users) && empty($posts))
+  <!-- @if(empty($users) && empty($posts))
   <h2>該当するポスト、またはユーザーは見つかりませんでしたZE!!!。</h2>
-  @endif
+  @endif -->
 
   @if(empty($users))
-  <h2>該当するユーザーは見つかりませんでした。</h2>
+  <div>該当するユーザーはありませんでした。</div>
   @endif
 
   @if(!empty($users))
@@ -15,7 +15,7 @@
     <div class="row my-4">
       @foreach($users as $user)
         <div class="col-md-4 mb-5">
-          <img src="{{ $user->thumbnail }}" class="thumbnail offset-5" alt=""> 
+          <img src="{{ $user->thumbnail }}" class="thumbnail searchthumbnail offset-5" alt=""> 
         </div>
         <div class="col-md-8">
           <h2>{{ $user->name }}</h2>
@@ -25,7 +25,7 @@
   @endif
 
   @empty($posts)
-  <h2>該当するポストは見つかりませんでした。</h2>
+  <div>該当するポストはありませんでした。</div>
   @endempty
 
   @if($posts) 

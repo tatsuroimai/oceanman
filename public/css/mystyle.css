@@ -5,10 +5,18 @@
 
 
 .thumbnail {
-  width: 150px;
-  height: 150px;
   object-fit: cover;
   border-radius: 50%;
+}
+
+.thumbprofile {
+  width: 150px;
+  height: 150px;
+}
+
+.searchthumbnail {
+  width: 80px;
+  height: 80px;
 }
 
 
