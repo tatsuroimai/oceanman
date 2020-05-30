@@ -13,20 +13,24 @@ use App\Topic;
 
 class PostController extends Controller
 {
+    // ホーム画面、全てのポストを表示
     public function index(Request $request){
         $authUser = Auth::user();
         $posts = Post::orderBy('id', 'desc')->get();
         $topics = Topic::all();
         return view('post.index', compact('authUser','posts','topics'));
     }
+
+    // ポスト投稿ページに移動
     public function add(Request $request){
         $authUser = Auth::user();
         $topics = Topic::all();
         return view('post.add', compact('authUser','topics'));
     }
+
+    // ポストを投稿、ストレージに画像を保存
     public function create(PostAddRequest $request){
         $postimage = $request->file('image');
-        // dd($postimage);
         $path = Storage::disk('s3')->putFile('postimages',$postimage,'public');
 
         $inputtopic = Topic::where('topic', $request->topic)->first();
@@ -49,19 +53,26 @@ class PostController extends Controller
         $post->fill($param)->save();
         return redirect()->back()->with('post_success', '投稿しました。');
     }
+
+    // ポストを開く、タイトルやメッセージ、他のユーザーからのコメントなどを見る
     public function show(Request $request){
         $authUser = Auth::user();
         $topics = Topic::all();
         $showpost = Post::find($request->post_id);
         $showcomments = $showpost->comments()->get();
+        // $showcomments = Comment::with('user')->where('post_id', $request->post_id)->get();
         return view('post.show', compact('authUser','showpost','showcomments','topics'));
     }
+
+    // ポスト編集ページに移動
     public function edit(Request $request){
         $authUser = Auth::user();
         $topics = Topic::all();
         $editpost = Post::find($request->post_id);
         return view('post.edit', compact('authUser','editpost','topics'));
     }
+
+    // ポストを編集して更新
     public function update(PostUpdateRequest $request){
         $authUserId = Auth::id();
         $param = [
@@ -75,12 +86,16 @@ class PostController extends Controller
         $post->fill($param)->save();
         return redirect()->back()->with('post_success', 'ポストを編集しました。');
     }
+
+    // ポスト削除ページに移動
     public function delete(Request $request){
         $authUser = Auth::user();
         $topics = Topic::all();
         $deletepost = Post::find($request->post_id);
         return view('post.delete', compact('authUser','deletepost','topics'));
     }
+
+    // ポストを削除、ストレージからも画像を削除
     public function remove(Request $request){
         $post = Post::find($request->post_id);
         $deleteimage = basename($post->image);
@@ -89,6 +104,7 @@ class PostController extends Controller
         return redirect('/');
     }
 
+    // キーワードとトピック、あるいはその組み合わせでユーザーやポストを検索
     public function search(Request $request){
         $authUser = Auth::user();
         $topics = Topic::all();

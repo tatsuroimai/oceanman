@@ -16,6 +16,7 @@ use App\Topic;
 
 class UserController extends Controller
 {
+    // 自分のプロフィールページ
     public function index(Request $request){
         $authUser = Auth::user();
         // $posts = Post::where('user_id', Auth::id())->orderBy('id', 'desc')->get();
@@ -25,13 +26,14 @@ class UserController extends Controller
         return view('user.index', compact('authUser','posts','topics'));
     }
 
-    
+    // 自分のプロフィール編集ページ、パスワードの変更やアカウント削除のページはここからいける
     public function edit(Request $request){
         $authUser = Auth::user();
         $topics = Topic::all();
         return view('user.edit', compact('authUser','topics'));
     }
 
+    // プロフィール情報のアップデート
     public function update(UserUpdateRequest $request){
 
         $authUser = Auth::user();
@@ -60,14 +62,14 @@ class UserController extends Controller
         return redirect(route('user.edit'))->with('success', '保存しました。');
     }
 
-    
-
+    // パスワード変更ページを表示
     public function showChangePasswordForm(){
         $authUser = Auth::user();
         $topics = Topic::all();
         return view('auth.changepassword', compact('authUser','topics'));
     }
 
+    // パスワードの変更とアップデート
     public function changePassword(ChangePasswordRequest $request){
         if(!(Hash::check($request->get('current-password'), Auth::user()->password))){
             return redirect()->back()->with('change_password_error', '現在のパスワードが間違っています。');
@@ -85,13 +87,14 @@ class UserController extends Controller
 
     }
 
-    
+    // 自分のアカウント削除ページに移動
     public function delete(Request $request){
         $authUser = Auth::user();
         $topics = Topic::all();
         return view('user.delete', compact('authUser','topics'));
     }
 
+    // 自分のアカウント(ユーザー)を削除、ポストやストレージの画像を削除
     public function remove(Request $request){
         $authUser = Auth::user();
         $delthumbnail = basename($authUser->thumbnail);
@@ -111,6 +114,7 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    // 自分以外のユーザープロフィールページを表示
     public function show(Request $request){
         $authUser = Auth::user();
         $topics = Topic::all();

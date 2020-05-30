@@ -10,6 +10,7 @@ use Validator;
 
 class CommentController extends Controller
 {
+    // ポストの個別表示ページでコメントを追加
     public function add(Request $request){
         $authUserId = Auth::id();
 

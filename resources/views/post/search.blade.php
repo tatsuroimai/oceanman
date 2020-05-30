@@ -2,9 +2,6 @@
 
 @section('content')
 <div class="container">
-  <!-- @if(empty($users) && empty($posts))
-  <h2>該当するポスト、またはユーザーは見つかりませんでしたZE!!!。</h2>
-  @endif -->
 
   @if($users == 'noneed')
   <div></div>
