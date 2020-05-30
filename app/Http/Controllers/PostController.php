@@ -92,8 +92,52 @@ class PostController extends Controller
     public function search(Request $request){
         $authUser = Auth::user();
         $topics = Topic::all();
+
+        $keyword = $request->keyword;    
+        $topic = $request->topic;
         $searchtopic = Topic::where('topic', $request->topic)->first();
-        $searchposts = $searchtopic->posts()->get();
-        return view('post.search', compact('authUser','topics','searchposts'));
+
+        
+
+
+        if($keyword && $topic != 'トピックで検索'){
+            $topicposts = $searchtopic->posts();  
+            $posts = $topicposts->where('title', 'like', '%'.$keyword.'%')
+                                ->orWhere('message', 'like', '%'.$keyword.'%')
+                                ->get();   
+            if($posts->isEmpty()){
+                $posts = null;
+            }  
+
+            $users = User::where('name', 'like', '%'.$keyword.'%')->get();
+            if($users->isEmpty()){
+                $users = null;
+            }
+
+        }elseif(empty($keyword) && $topic != 'トピックで検索'){
+            $posts = $searchtopic->posts()->get();  
+            $users = null;
+
+        }elseif($keyword && $topic == 'トピックで検索'){
+            $posts = Post::where('title', 'like', '%'.$keyword.'%')
+                            ->orWhere('message', 'like', '%'.$keyword.'%')->get(); 
+                            // ->orWhereHas('user', function ($query) use ($keyword){
+                            //     $query->where('name', 'like', '%'.$keyword.'%');
+                            // })->get();  
+            if($posts->isEmpty()){
+                $posts = null;
+            }  
+            
+            $users = User::where('name', 'like', '%'.$keyword.'%')->get();  
+            if($users->isEmpty()){
+                $users = null;
+            }
+           
+        }else{
+            return redirect()->back();
+        }
+        return view('post.search', compact('authUser','topics','posts','users'));
     }
 }
+
+// $users = User::where('name', 'like', '%'.$keyword.'%')->get();

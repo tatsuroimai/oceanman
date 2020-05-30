@@ -47,7 +47,7 @@
                     <form method="GET" action="{{ route('post.search') }}" class="form-inline">
                         @csrf
                         <div class="form-group">        
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchobj">
+                            <input class="form-control mr-sm-2" type="search" placeholder="キーワード検索" aria-label="Search" name="keyword">
                         </div>
                         <div class="form-group">
                             <select class="form-control" name="topic">
