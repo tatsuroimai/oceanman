@@ -1,8 +1,12 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Oceanman
 
 
+## Oceanmanについて
 
-![image](public/img/yuriy-mlcn-VVQeCl_Xe6g-unsplash.jpg)
+　画像を投稿し、みんなと共有し合えるアプリです！
+ 
+## インストール
 
-![defoimage](public/img/blank-profile-picture-973460_640.png)
+1. リポジトリのクローン
 
+```$ git clone```
