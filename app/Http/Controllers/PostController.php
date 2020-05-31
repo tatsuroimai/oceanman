@@ -76,14 +76,34 @@ class PostController extends Controller
     // ポストを編集して更新
     public function update(PostUpdateRequest $request){
         $authUserId = Auth::id();
+
+        $edittopic = Topic::where('topic', $request->topic)->first();
+        if(!$edittopic){
+            $topic = new Topic;
+            $topic->topic = $request->topic;
+            $topic->save();
+
+            $newtopic = Topic::where('topic', $request->topic)->first();
+            $param = [
+                'title'=>$request->title,
+                'message'=>$request->message,
+                'topic_id'=>$newtopic->id,
+                'user_id'=>$authUserId,
+            ];
+            $post = Post::find($request->postid);
+            $post->fill($param)->save();
+            return redirect()->back()->with('post_success', 'ポストを編集しました。');
+
+        }
+        
         $param = [
             'title'=>$request->title,
             'message'=>$request->message,
-            'topic'=>$request->topic,
+            'topic_id'=>$edittopic->id,
             'user_id'=>$authUserId,
         ];
         $post = Post::find($request->postid);
-        // var_dump($post);
+        
         $post->fill($param)->save();
         return redirect()->back()->with('post_success', 'ポストを編集しました。');
     }
