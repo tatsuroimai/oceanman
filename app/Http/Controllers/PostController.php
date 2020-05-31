@@ -10,6 +10,7 @@ use App\Http\Requests\PostAddRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\User;
 use App\Topic;
+use DB;
 
 class PostController extends Controller
 {
@@ -113,11 +114,25 @@ class PostController extends Controller
         $topic = $request->topic;
         $searchtopic = Topic::where('topic', $request->topic)->first();
 
-        if($keyword && $topic != 'トピックで検索'){
+        if($keyword && ($topic != 'トピックで検索')){
             $topicposts = $searchtopic->posts();  
-            $posts = $topicposts->where('title', 'like', '%'.$keyword.'%')
-                                ->orWhere('message', 'like', '%'.$keyword.'%')
-                                ->get();   
+            // DB::enableQueryLog();
+
+            // $posts = $topicposts->where('title', 'like', '%'.$keyword.'%')
+            //                     ->orWhere('message', 'like', '%'.$keyword.'%')
+            //                     ->get();  
+            // $posts = $topicposts->where(function ($topicposts) use ($keyword) {
+            //     $topicsposts->where('title', 'like', ‘ % ’ . $keyword . ‘ % ')->orWhere('message', 'like', ‘ % ’ . $keyword . ‘ % ');
+                
+            // })->get();
+            // $posts = $topicposts->where(function ($query) use ($keyword) {
+            //     $query->where('title', 'like', ' % ' . $keyword . ' % ')->orWhere('message', 'like', ' % ' . $keyword . ' % ');
+            // })->get();
+            $posts = $topicposts->where(function ($topicposts) use ($keyword) {
+                $topicposts->where('title', 'like', '%' . $keyword . '%')->orWhere('message', 'like', '%' . $keyword . '%');
+            })->get();
+        
+            // dd(DB::getQueryLog()); 
             if($posts->isEmpty()){
                 $posts = null;
             }  
@@ -127,11 +142,11 @@ class PostController extends Controller
                 $users = null;
             }
 
-        }elseif(empty($keyword) && $topic != 'トピックで検索'){
+        }elseif(empty($keyword) && ($topic != 'トピックで検索')){
             $posts = $searchtopic->posts()->get();  
             $users = 'noneed';
 
-        }elseif($keyword && $topic == 'トピックで検索'){
+        }elseif($keyword && ($topic == 'トピックで検索')){
             $posts = Post::where('title', 'like', '%'.$keyword.'%')
                             ->orWhere('message', 'like', '%'.$keyword.'%')->get(); 
                             // ->orWhereHas('user', function ($query) use ($keyword){

@@ -9,6 +9,8 @@
   <div class="mb-5">該当するユーザーはありませんでした。</div>
   @endif
 
+ 
+
   @if(!empty($users) && $users != 'noneed')
     <h2>該当したユーザー</h2>
     <div class="row my-4">
