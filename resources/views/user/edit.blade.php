@@ -11,7 +11,7 @@
         @if(!empty($authUser->thumbnail))
             <img src="{{ $authUser->thumbnail }}" class="editThumbnail">
         @else
-            <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" class="thumbnail offset-5" alt="">
+            <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" class="editThumbnail offset-5" alt="">
         @endif
     </div>
 

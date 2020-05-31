@@ -6,7 +6,7 @@
   @if($users == 'noneed')
   <div></div>
   @elseif(empty($users))
-  <div>該当するユーザーはありませんでした。</div>
+  <div class="mb-5">該当するユーザーはありませんでした。</div>
   @endif
 
   @if(!empty($users) && $users != 'noneed')
@@ -14,7 +14,15 @@
     <div class="row my-4">
       @foreach($users as $user)
         <div class="col-md-4 mb-5">
-          <img src="{{ $user->thumbnail }}" class="thumbnail searchthumbnail offset-5" alt=""> 
+          @if($user->thumbnail)
+          <a href="{{ route('user.show', ['user_id'=>$user->id]) }}">
+            <img src="{{ $user->thumbnail }}" class="thumbnail searchthumbnail offset-5" alt=""> 
+          </a>
+          @else
+          <a href="{{ route('user.show', ['user_id'=>$user->id]) }}">
+            <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" class="thumbnail searchthumbnail offset-5" alt="">
+          </a>
+          @endif
         </div>
         <div class="col-md-8">
           <h2>{{ $user->name }}</h2>
