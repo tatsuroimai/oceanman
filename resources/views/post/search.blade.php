@@ -6,13 +6,13 @@
   @if($users == 'noneed')
   <div></div>
   @elseif(empty($users))
-  <div class="mb-5">該当するユーザーはありませんでした。</div>
+  <div class="my-5 ml-5">該当するユーザーはありませんでした。</div>
   @endif
 
  
 
   @if(!empty($users) && $users != 'noneed')
-    <h2>該当したユーザー</h2>
+    <h4 class="my-5 ml-5">該当したユーザー</h4>
     <div class="row my-4">
       @foreach($users as $user)
         <div class="col-md-4 mb-5">
@@ -26,7 +26,7 @@
           </a>
           @endif
         </div>
-        <div class="col-md-8">
+        <div class="mt-4 col-md-8">
           <h2>{{ $user->name }}</h2>
         </div>  
       @endforeach
@@ -34,7 +34,7 @@
   @endif
 
   @empty($posts)
-  <div>該当するポストはありませんでした。</div>
+  <div class="ml-5">該当するポストはありませんでした。</div>
   @endempty
 
   @if($posts) 

@@ -12,11 +12,11 @@
           <div class="row mb-5">
             @if($showpost->user->thumbnail)
               <a href="{{ route('user.show', ['user_id'=>$showpost->user_id]) }}">
-                <img class="showpostuser" src="{{ $showpost->user->thumbnail }}" style="width:50px; height:50px; position:absolute; top:20px; left:20px; border-radius:50%" alt=""> 
+                <img class="showpostuser thumbnail" src="{{ $showpost->user->thumbnail }}" style="width:50px; height:50px; position:absolute; top:20px; left:20px;" alt=""> 
               </a>
             @else
               <a href="{{ route('user.show', ['user_id'=>$showpost->user_id]) }}">
-                <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" style="width:50px; height:50px; position:absolute; top:20px; left:20px; border-radius:50%" alt="">
+                <img class="showpostuser thumbnail" src="{{ asset('img/blank-profile-picture-973460_640.png') }}" style="width:50px; height:50px; position:absolute; top:20px; left:20px;" alt="">
               </a>
             @endif
               <div style="position:relative; top:15px; left:90px">{{ $showpost->user->name }}</div>        
@@ -35,11 +35,11 @@
               <div class="row comment-item my-3" style="border-radius:50">
                 @if($comment->user->thumbnail)
                   <a href="{{ route('user.show', ['user_id'=>$comment->user_id]) }}">
-                    <img src="{{ $comment->user->thumbnail }}" style="width:40px; height:40px; border-radius:50%; position:relative; left:40px" alt="">
+                    <img src="{{ $comment->user->thumbnail }}" class="thumbnail" style="width:40px; height:40px; position:relative; left:40px" alt="">
                   </a>
                 @else
                   <a href="{{ route('user.show', ['user_id'=>$comment->user_id]) }}">
-                    <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" style="width:40px; height:40px; border-radius:50%; position:relative; left:40px" alt="">
+                    <img src="{{ asset('img/blank-profile-picture-973460_640.png') }}" class="thumbnail" style="width:40px; height:40px; position:relative; left:40px" alt="">
                   </a>
                 @endif
                 <div style="position:relative; top:10px; left:60px">{{ $comment->comment }}</div>
