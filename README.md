@@ -10,3 +10,5 @@
 1. リポジトリのクローン
 
 ```$ git clone```
+
+![](public/varun-gaba-O_H7BlvtZ8Y-unsplash.jpg)
