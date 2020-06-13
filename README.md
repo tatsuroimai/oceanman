@@ -11,4 +11,4 @@
 
 ```$ git clone```
 
-![](public/varun-gaba-O_H7BlvtZ8Y-unsplash.jpg)
+![](public/img/varun-gaba-O_H7BlvtZ8Y-unsplash.jpg)
