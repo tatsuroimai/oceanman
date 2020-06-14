@@ -1,6 +1,6 @@
 # Oceanman
 
-
+![](public/img/oceanmanhome.png)
 ## About
 
 　画像を投稿し、みんなと共有し合えるアプリです！
@@ -11,4 +11,4 @@
 
 ```$ git clone```
 
-![](public/img/varun-gaba-O_H7BlvtZ8Y-unsplash.jpg)
+
