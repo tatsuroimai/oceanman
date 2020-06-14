@@ -57,11 +57,11 @@ AWS_DEFAULT_REGION=
 AWS_BUCKET=
 ```
 
-9. Make tables in the database
+10. Make tables in the database
 
 ```$ php artisan migrate```
 
-10. Run project
+11. Run project
 
 ```$ php artisan serve```
 
