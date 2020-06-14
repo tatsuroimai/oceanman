@@ -48,7 +48,7 @@ DB_CONNECTION=sqlite
 'default' => env('DB_CONNECTION', 'sqlite'),
 ```
 
-9. This project is supposed to use S3 (Storage service offered by AWS). If you use S3, edit this section in .env file. if you don't, edit UserController.php and PostController.php and change where to save image files.
+9. This project is supposed to use S3 (Storage service offered by AWS). If you use S3, edit this section in .env file. if you don't, edit UserController.php and PostController.php to change where to save image files.
 
 ```
 AWS_ACCESS_KEY_ID=
