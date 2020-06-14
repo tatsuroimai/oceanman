@@ -3,7 +3,7 @@
 ![](public/img/homeimage.png)
 ## About
 
-　画像を投稿し、みんなと共有し合えるアプリです！
+You can post photos and share with everyone with this app! Also, you can search photos by topics or keywords or in both ways. If you find any photo you like, leave your comment on the post.
  
 ## インストール
 
