@@ -1,7 +1,7 @@
 # Oceanman
 
 
-## Oceanmanについて
+## About
 
 　画像を投稿し、みんなと共有し合えるアプリです！
  
