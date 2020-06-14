@@ -1,6 +1,6 @@
 # Oceanman
 
-![](public/img/oceanmanhome.png)
+![](public/img/homeimage.png)
 ## About
 
 　画像を投稿し、みんなと共有し合えるアプリです！
