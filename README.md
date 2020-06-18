@@ -1,6 +1,22 @@
 # Oceanman
 
 ![](public/img/homeimage.png)
+
+Check a certain post.
+<img src="public/img/2post.png" width="800px">
+
+You can edit your post.
+<img src="public/img/3postedit.png" width="800px">
+
+Search photos by keyword.
+<img src="public/img/4keyword.png" width="800px">
+
+Search user by keyword.
+<img src="public/img/5keyword.png" width="800px">
+
+Search by topic.
+<img src="public/img/6topic.png" width="800px">
+                                          
 ## About
 
 You can post photos and share with everyone with this app! Also, you can search photos by topics or keywords or using both. If you want to search specific user, run a keyword search by the name of the user. If you find any photo you like, leave your comment on the post.
